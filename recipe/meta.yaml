@@ -1,13 +1,13 @@
 {% set name = "de-feiertage" %}
-{% set version = "1.0.1" %}
+{% set version = "1.0.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/de-feiertage-{{ version }}.tar.gz
-  sha256: 68ed32993d5436971073c1803d0641f1942315768a825e828fa029caa27ad8c5
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 5b7b79f3decae32a2a8ca9f327e91742652b6161dc5704d71f02791e989fa03b
 
 build:
   noarch: python
@@ -36,7 +36,7 @@ about:
   home: https://github.com/bundesAPI/feiertage-api
   summary: Feiertage API
   license: Apache-2.0
-  license_file: 
+  license_file:
     - LICENSE
 
 extra:
