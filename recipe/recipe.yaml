@@ -1,0 +1,46 @@
+schema_version: 1
+
+context:
+  name: de-feiertage
+  version: "1.0.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/${{ name | replace('-', '_') }}-${{ version }}.tar.gz
+  sha256: 5b7b79f3decae32a2a8ca9f327e91742652b6161dc5704d71f02791e989fa03b
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - poetry
+  run:
+    - python >=${{ python_min }}
+    - python-dateutil
+    - urllib3 >=1.25.3
+
+tests:
+  - python:
+      imports:
+        - deutschland.feiertage
+      pip_check: true
+      python_version: ${{ python_min }}
+
+about:
+  summary: Feiertage API
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+  homepage: https://github.com/bundesAPI/feiertage-api
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
